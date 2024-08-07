@@ -13,8 +13,30 @@ p {
     color: #555 !important;
 }
 
+h4 {
+    color: #555 !important;
+    font-weight: normal !important;
+}
+
+small {
+    color: #555 !important;
+    display: block;
+}
+
 .a-decoration-none {
     text-decoration: none !important;
+}
+
+.clickable {
+    cursor: pointer !important;
+}
+
+.main-color {
+    color: #ff523b !important;
+}
+
+.quote {
+    font-size: 34px !important;
 }
 
 .clearfix::after {
@@ -32,7 +54,7 @@ p {
 
 .col-2 {
     flex-basis: 50%;
-    min-width: 300px;
+    /* min-width: 300px; */
     padding: 0px 16px;
 }
 
@@ -47,6 +69,42 @@ p {
     padding: 50px 0;
 }
 
+.col-3 {
+    flex-basis: 30%;
+    /* min-width: 250px; */
+    margin-bottom: 30px;
+}
+
+.col-3 img {
+    width: 100%;
+}
+
+.col-3 p {
+    font-size: 12px;
+    margin: 12px 0;
+    color: #777;
+}
+
+.col-4 {
+    flex-basis: 25%;
+    padding: 10px;
+    /* min-width: 200px; */
+    margin-bottom: 50px;
+    transition: transform 0.5s; /* Hiệu ứng chuyển động */
+}
+
+.col-4:hover {
+    transform: translateY(-5px);
+}
+
+.col-4 img {
+    width: 100%;
+}
+
+.col-4 p {
+    font-size: 14px;
+}
+
 .btn {
     display: inline-block;
     background-color: #ff523b;
@@ -54,10 +112,31 @@ p {
     padding: 8px 30px;
     margin: 30px 0;
     border-radius: 30px;
+    width: auto;
 }
 
 .btn:hover {
     opacity: 0.7;
+}
+
+.title {
+    text-align: center;
+    margin: 50px 0;
+    position: relative;
+    line-height: 60px;
+    color: #555;
+}
+
+.title::after {
+    content: '';
+    background: #ff523b;
+    height: 5px;
+    width: 80px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Dịch tâm sang trái 50% chiều dài của thanh */
 }
 
 /* Header */
@@ -73,6 +152,7 @@ p {
     position: fixed;
     top: 0;
     width: calc(100% - 41px);
+    z-index: 1;
 }
 
 nav {
@@ -103,4 +183,45 @@ nav ul a:hover {
 
 .header .row {
     padding-top: 70px;
+}
+
+/* Featured categories */
+.categories {
+    padding: 0 25px;
+    margin: 80px 5%;
+}
+
+/* Featured products */
+
+/* Offer */
+.offer {
+    background: radial-gradient(#fff, #ffd6d6);
+}
+
+.col-2 .offer-img {
+    padding: 50px;
+}
+
+/* Testimonial */
+.testimonial .col-3 {
+    text-align: center;
+    padding: 40px 20px;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s;
+}
+
+.testimonial .col-3:hover {
+    transform: translateY(-10px);
+}
+
+.testimonial .col-3 img {
+    width: 50px;
+    margin-top: 20px;
+    border-radius: 50%;
+}
+
+.testimonial .col-3 h3 {
+    font-weight: 600;
+    color: #555;
+    font-size: 16px;
 }
