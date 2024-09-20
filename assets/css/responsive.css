@@ -26,12 +26,26 @@
     }
 }
 
-/* Mobile */
-@media only screen and (max-width: 600px) {
+/* Tablet & Mobile */
+@media only screen and (max-width: 1023px) {
     .row {
         text-align: center;
     }
 
+    [class*="footer-col"] {
+        flex-basis: 100%;
+    }
+}
+
+/* Tablet */
+@media only screen and (min-width: 601px) and (max-width: 1023px) {
+    .col-4 {
+        flex-basis: 50%;
+    }
+}
+
+/* Mobile */
+@media only screen and (max-width: 600px) {
     .col-2, .col-3, .col-4 {
         flex-basis: 100%;
     }

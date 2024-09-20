@@ -27,6 +27,15 @@ ul {
     list-style-type: none !important;
 }
 
+select {
+    padding: 5px;
+    border: 1px solid #000;
+}
+
+select:focus {
+    outline: none;
+}
+
 .a-decoration-none {
     text-decoration: none !important;
 }
@@ -41,6 +50,10 @@ ul {
 
 .quote {
     font-size: 34px !important;
+}
+
+.mg-lr-10 {
+    margin: 0 10px !important;
 }
 
 .clearfix::after {
@@ -163,7 +176,6 @@ ul {
 
 /* Header */
 #header {
-    padding: 0 25px;
     background: radial-gradient(#fff, #ffd6d6);
 }
 
@@ -175,9 +187,10 @@ ul {
     display: flex;
     align-items: center; /* vertical center */
     padding: 16px;
+    margin: 0 25px;
     position: fixed;
     top: 0;
-    width: calc(100% - 41px);
+    width: calc(100% - 48px);
     z-index: 1;
 }
 
@@ -219,6 +232,10 @@ nav ul a:hover {
 /* Offer */
 .offer {
     background: radial-gradient(#fff, #ffd6d6);
+}
+
+.offer p {
+    margin: 25px 0;
 }
 
 .col-2 .offer-img {
@@ -316,4 +333,28 @@ nav ul a:hover {
 
 .copyright {
     text-align: center;
+}
+
+/* All products page */
+.row-2 {
+    justify-content: space-between;
+}
+
+.page-btn {
+    margin: 0 auto 80px;
+    text-align: center;
+}
+
+.page-btn span {
+    display: inline-block;
+    border: 1px solid #ff523b;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.page-btn span:hover {
+    background: #ff523b;
+    color: #fff;
 }
