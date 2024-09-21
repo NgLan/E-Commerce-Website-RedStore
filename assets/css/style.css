@@ -52,8 +52,8 @@ select:focus {
     font-size: 34px !important;
 }
 
-.mg-lr-10 {
-    margin: 0 10px !important;
+.mg-10 {
+    margin: 10px !important;
 }
 
 .clearfix::after {
