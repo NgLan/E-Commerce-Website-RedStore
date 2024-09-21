@@ -15,7 +15,7 @@ p {
 
 h4 {
     color: #555 !important;
-    font-weight: normal !important;
+    font-weight: normal;
 }
 
 small {
@@ -27,13 +27,13 @@ ul {
     list-style-type: none !important;
 }
 
-select {
-    padding: 5px;
+select, input {
+    padding: 10px;
     border: 1px solid #000;
 }
 
 select:focus {
-    outline: none;
+    /* outline: none; */
 }
 
 .a-decoration-none {
@@ -172,6 +172,12 @@ select:focus {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%); /* Dịch tâm sang trái 50% chiều dài của thanh */
+}
+
+.buy-option {
+    height: 40px;
+    margin: 20px 10px 0 0;
+    font-size: 16px;
 }
 
 /* Header */
@@ -357,4 +363,45 @@ nav ul a:hover {
 .page-btn span:hover {
     background: #ff523b;
     color: #fff;
+}
+
+/* Single product details */
+.single-product .col-2 {
+    padding: 20px;
+}
+
+.single-product .col-2 img {
+    padding: 0;
+}
+
+.single-product p {
+    text-align: justify;
+}
+
+.single-product h3 {
+    margin-bottom: 20px;
+}
+
+.single-product h4 {
+    margin: 20px 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.single-product input {
+    width: 50px;
+}
+
+.single-product .indent {
+    margin-left: 10px;
+    color: #ff523b;
+}
+
+.small-img-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.small-img-col {
+    flex-basis: 24%;
 }
