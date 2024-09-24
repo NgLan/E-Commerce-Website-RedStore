@@ -9,7 +9,7 @@
         top: 70px;
         right: 0;
         background: #333;
-        opacity: 80%;
+        opacity: 90%;
         width: 100%;
         display: none;
         /* overflow: hidden;
@@ -69,5 +69,9 @@
     .single-product h1 {
         font-size: 26px;
         line-height: 32px;
+    }
+
+    .cart-info p {
+        display: none;
     }
 }
