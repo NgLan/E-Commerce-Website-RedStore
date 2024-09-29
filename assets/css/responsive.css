@@ -23,6 +23,8 @@
     nav ul li a {
         color: #fff;
         padding: 16px 16px;
+        text-align: center;
+        font-size: 17px;
     }
 }
 

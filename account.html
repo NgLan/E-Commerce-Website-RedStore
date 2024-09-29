@@ -17,18 +17,18 @@
     <!-- Begin: Header -->
     <div class="navbar">
         <div class="logo">
-            <img src="assets/images/logo.png" alt="Logo" width="125px">
+            <a href="index.html"><img src="assets/images/logo.png" alt="Logo" width="125px"></a>
         </div>
         <nav>
             <ul id="MenuItems">
-                <li><a href="">Home</a></li>
-                <li><a href="">Products</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
                 <li><a href="">About</a></li>
                 <li><a href="">Contact</a></li>
-                <li><a href="">Account</a></li>
+                <li><a href="account.html">Account</a></li>
             </ul>
         </nav>
-        <img src="assets/images/cart.png" alt="Cart" height="30px" width="30px" class="clickable">
+        <a href="cart.html"><img src="assets/images/cart.png" alt="Cart" height="30px" width="30px" class="clickable"></a>
         <img src="assets/images/menu.png" alt="Menu" class="clickable menu-icon">
     </div>    
     <!-- End: Header -->
@@ -39,6 +39,29 @@
             <div class="row">
                 <div class="col-2">
                     <img src="assets/images/image1.png" width="100%" alt="">
+                </div>
+                <div class="col-2">
+                    <div class="form-container">
+                        <div class="form-btn">
+                            <span class="clickable" onclick="login()">Login</span>
+                            <span class="clickable" onclick="register()">Register</span>
+                            <hr id="Indicator">
+                        </div>
+
+                        <form id="LoginForm">
+                            <input type="text" placeholder="Username">
+                            <input type="password" placeholder="Password">
+                            <button type="submit" class="btn clickable">Login</button>
+                            <a href="" class="a-decoration">Forgot password</a>
+                        </form>
+
+                        <form id="RegForm">
+                            <input type="text" placeholder="Username">
+                            <input type="email" placeholder="Email">
+                            <input type="password" placeholder="Password">
+                            <button type="submit" class="btn clickable">Register</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,6 +120,25 @@
             } else {
                 MenuItems.style.display = '';
             }
+        }
+    </script>
+
+        <!-- Toggle Form -->
+    <script>
+        var LoginForm = document.getElementById("LoginForm");
+        var RegForm = document.getElementById("RegForm");
+        var Indicator = document.getElementById("Indicator");
+
+        function register() {
+            RegForm.style.transform = "translateX(0px)";
+            LoginForm.style.transform = "translateX(0px)";
+            Indicator.style.transform = "translateX(105px)";
+        }
+
+        function login() {
+            RegForm.style.transform = "translateX(300px)";
+            LoginForm.style.transform = "translateX(300px)";
+            Indicator.style.transform = "translateX(0px)";
         }
     </script>
     <!-- End JavaScript -->
