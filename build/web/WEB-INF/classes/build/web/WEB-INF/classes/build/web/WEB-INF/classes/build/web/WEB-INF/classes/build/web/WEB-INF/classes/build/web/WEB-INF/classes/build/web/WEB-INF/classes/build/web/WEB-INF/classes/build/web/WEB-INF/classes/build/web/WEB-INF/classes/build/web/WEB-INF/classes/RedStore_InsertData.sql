@@ -1,0 +1,105 @@
+﻿INSERT INTO Category (Name) VALUES (N'Quần');
+INSERT INTO Category (Name) VALUES (N'Áo');
+INSERT INTO Category (Name) VALUES (N'Giày');
+INSERT INTO Category (Name) VALUES (N'Tất');
+INSERT INTO Category (Name) VALUES (N'Đồng Hồ');
+
+INSERT INTO [Product] (Name, Image, Price, Description, CategoryID) VALUES (N'Quần Jeans', '', 500000, N'Quần jeans thời trang', 1);
+INSERT INTO [Product] (Name, Image, Price, Description, CategoryID) VALUES (N'Quần Tây', '', 400000, N'Quần tây công sở', 1);
+INSERT INTO [Product] (Name, Image, Price, Description, CategoryID) VALUES (N'Áo Thun', '', 200000, N'Áo thun cotton', 2);
+INSERT INTO [Product] (Name, Image, Price, Description, CategoryID) VALUES (N'Áo Sơ Mi', '', 350000, N'Áo sơ mi lịch lãm', 2);
+INSERT INTO [Product] (Name, Image, Price, Description, CategoryID) VALUES (N'Áo Khoác', '', 600000, N'Áo khoác mùa đông', 2);
+INSERT INTO [Product] (Name, Image, Price, Description, CategoryID) VALUES (N'Giày Thể Thao', '', 700000, N'Giày thể thao năng động', 3);
+INSERT INTO [Product] (Name, Image, Price, Description, CategoryID) VALUES (N'Giày Tây', '', 800000, N'Giày tây da thật', 3);
+INSERT INTO [Product] (Name, Image, Price, Description, CategoryID) VALUES (N'Tất Cổ Cao', '', 50000, N'Tất cổ cao', 4);
+INSERT INTO [Product] (Name, Image, Price, Description, CategoryID) VALUES (N'Tất Cổ Ngắn', '', 40000, N'Tất cổ ngắn', 4);
+INSERT INTO [Product] (Name, Image, Price, Description, CategoryID) VALUES (N'Đồng Hồ Thời Trang', '', 1500000, N'Đồng hồ đeo tay thời trang', 5);
+INSERT INTO [Product] (Name, Image, Price, Description, CategoryID) VALUES (N'Đồng Hồ Thể Thao', '', 1800000, N'Đồng hồ đeo tay thể thao', 5);
+INSERT INTO [Product] (Name, Image, Price, Description, CategoryID) VALUES (N'Đồng Hồ Sang Trọng', '', 3000000, N'Đồng hồ sang trọng', 5);
+
+INSERT INTO Role (Name) VALUES ('Customer');
+INSERT INTO Role (Name) VALUES ('Admin');
+
+INSERT INTO Account ([User], Password, RoleID) VALUES ('user1', 'password1', 1);
+INSERT INTO Account ([User], Password, RoleID) VALUES ('user2', 'password2', 1);
+INSERT INTO Account ([User], Password, RoleID) VALUES ('user3', 'password3', 1);
+INSERT INTO Account ([User], Password, RoleID) VALUES ('user4', 'password4', 1);
+INSERT INTO Account ([User], Password, RoleID) VALUES ('user5', 'password5', 1);
+INSERT INTO Account ([User], Password, RoleID) VALUES ('user6', 'password6', 1);
+INSERT INTO Account ([User], Password, RoleID) VALUES ('user7', 'password7', 1);
+INSERT INTO Account ([User], Password, RoleID) VALUES ('user8', 'password8', 1);
+INSERT INTO Account ([User], Password, RoleID) VALUES ('user9', 'password9', 1);
+INSERT INTO Account ([User], Password, RoleID) VALUES ('user10', 'password10', 1);
+INSERT INTO Account ([User], Password, RoleID) VALUES ('admin1', 'password11', 2);
+INSERT INTO Account ([User], Password, RoleID) VALUES ('admin2', 'password12', 2);
+INSERT INTO Account ([User], Password, RoleID) VALUES ('admin3', 'password13', 2);
+
+INSERT INTO Color (Name) VALUES (N'Đỏ');
+INSERT INTO Color (Name) VALUES (N'Đen');
+INSERT INTO Color (Name) VALUES (N'Xám');
+INSERT INTO Color (Name) VALUES (N'Xanh Dương');
+INSERT INTO Color (Name) VALUES (N'Trắng');
+
+INSERT INTO ProductColor (ProductID, ColorID) VALUES (1, 1);
+INSERT INTO ProductColor (ProductID, ColorID) VALUES (2, 2);
+INSERT INTO ProductColor (ProductID, ColorID) VALUES (3, 3);
+INSERT INTO ProductColor (ProductID, ColorID) VALUES (4, 4);
+INSERT INTO ProductColor (ProductID, ColorID) VALUES (5, 5);
+INSERT INTO ProductColor (ProductID, ColorID) VALUES (6, 1);
+INSERT INTO ProductColor (ProductID, ColorID) VALUES (7, 2);
+INSERT INTO ProductColor (ProductID, ColorID) VALUES (8, 3);
+INSERT INTO ProductColor (ProductID, ColorID) VALUES (9, 4);
+INSERT INTO ProductColor (ProductID, ColorID) VALUES (10, 5);
+INSERT INTO ProductColor (ProductID, ColorID) VALUES (11, 1);
+INSERT INTO ProductColor (ProductID, ColorID) VALUES (12, 2);
+
+INSERT INTO Size (Name) VALUES ('S');
+INSERT INTO Size (Name) VALUES ('M');
+INSERT INTO Size (Name) VALUES ('L');
+INSERT INTO Size (Name) VALUES ('XL');
+INSERT INTO Size (Name) VALUES ('XXL');
+
+INSERT INTO ProductSize (ProductID, SizeID) VALUES (1, 1);
+INSERT INTO ProductSize (ProductID, SizeID) VALUES (2, 2);
+INSERT INTO ProductSize (ProductID, SizeID) VALUES (3, 3);
+INSERT INTO ProductSize (ProductID, SizeID) VALUES (4, 4);
+INSERT INTO ProductSize (ProductID, SizeID) VALUES (5, 5);
+INSERT INTO ProductSize (ProductID, SizeID) VALUES (6, 1);
+INSERT INTO ProductSize (ProductID, SizeID) VALUES (7, 2);
+INSERT INTO ProductSize (ProductID, SizeID) VALUES (8, 3);
+INSERT INTO ProductSize (ProductID, SizeID) VALUES (9, 4);
+INSERT INTO ProductSize (ProductID, SizeID) VALUES (10, 5);
+INSERT INTO ProductSize (ProductID, SizeID) VALUES (11, 1);
+INSERT INTO ProductSize (ProductID, SizeID) VALUES (12, 2);
+
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (1, 1, 1, 1, 2);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (2, 2, 2, 2, 1);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (3, 3, 3, 3, 4);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (4, 4, 4, 4, 1);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (5, 5, 5, 5, 2);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (6, 6, 1, 1, 1);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (7, 7, 2, 2, 3);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (8, 8, 3, 3, 2);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (9, 9, 4, 4, 1);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (10, 10, 5, 5, 3);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (1, 11, 1, 2, 1);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (2, 12, 2, 3, 4);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (3, 1, 3, 4, 2);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (4, 2, 4, 5, 1);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (5, 3, 5, 1, 3);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (6, 4, 1, 2, 2);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (7, 5, 2, 3, 1);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (8, 6, 3, 4, 4);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (9, 7, 4, 5, 1);
+INSERT INTO Cart (UserID, ProductID, SizeID, ColorID, Quantity) VALUES (10, 8, 5, 1, 2);
+
+INSERT INTO Image (ProductID, Link) VALUES (1, '');
+INSERT INTO Image (ProductID, Link) VALUES (1, '');
+INSERT INTO Image (ProductID, Link) VALUES (1, '');
+INSERT INTO Image (ProductID, Link) VALUES (1, '');
+INSERT INTO Image (ProductID, Link) VALUES (5, '');
+INSERT INTO Image (ProductID, Link) VALUES (6, '');
+INSERT INTO Image (ProductID, Link) VALUES (7, '');
+INSERT INTO Image (ProductID, Link) VALUES (8, '');
+INSERT INTO Image (ProductID, Link) VALUES (9, '');
+INSERT INTO Image (ProductID, Link) VALUES (10, '');
