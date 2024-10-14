@@ -1,7 +1,8 @@
 package dao;
 
 import context.DBContext;
-import entity.Image;
+import entity.Category;
+import entity.Feedback;
 import entity.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,30 +15,184 @@ public class DAO {
     PreparedStatement ps = null; //Dung de nem query sang SQL Server
     ResultSet rs = null; //Nhan ket qua tra ve
     
-    public List<Image> getImage(String option) {
-        List<Image> image = new ArrayList<>();
-        String query = "SELECT * FROM [Image]\n" +
-            "WHERE [Option] = ?";
+    public List<Category> getCategory() {
+        List<Category> list = new ArrayList<>();
+        String query = "SELECT * FROM Category";
         try {
             conn = new DBContext().getConnection(); //mo ket noi voi sql
             ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
-            ps.setString(1, option);
             rs = ps.executeQuery();
             while (rs.next()) {
-                image.add(new Image(rs.getInt(1),
+                list.add(new Category(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3)));
             }
         } catch (Exception e) {
         }
-        return image;
+        return list;
+    }
+    
+    public List<Product> getProduct() {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT * FROM [Product]\n" +
+            "WHERE [Image] NOT LIKE 'exclusive.png'";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getFloat(7)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    public List<Product> getFeaturedProduct() {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT TOP 4 * FROM [Product]\n" +
+            "WHERE [Image] NOT LIKE 'exclusive.png'\n" +
+            "ORDER BY Rate DESC;";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getFloat(7)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    public List<Product> getLastProduct() {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT TOP 8 * FROM [Product]\n" +
+            "WHERE [Image] NOT LIKE 'exclusive.png'\n" +
+            "ORDER BY ID DESC";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getFloat(7)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    public Product getExclusiveProduct() {
+        String query = "SELECT * FROM [Product]\n" +
+            "WHERE [Image] = 'exclusive.png'";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Product(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getFloat(7));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    public List<Feedback> getFeedback() {
+        List<Feedback> list = new ArrayList<>();
+        String query = "SELECT fb.UserID, acc.FullName, acc.[Image], fb.Review, fb.Rate\n" +
+            "FROM Account AS acc\n" +
+            "RIGHT JOIN Feedback AS fb\n" +
+            "ON acc.ID = fb.UserID";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Feedback(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getFloat(5)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    public List<Product> getProductByCategory(String cateID) {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT * FROM [Product]\n" +
+            "WHERE CategoryID = ?";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            ps.setString(1, cateID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getFloat(7)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
     
     public static void main(String[] args) {
         DAO dao = new DAO();
-        List<Image> image = dao.getImage("C");
-        
-        for (Image o : image) {
+//        List<Category> listC = dao.getCategory();
+//        List<Product> listP = dao.getProduct();
+//        List<Product> featuredProduct = dao.getFeaturedProduct();
+//        List<Product> lastProduct = dao.getLastProduct();
+//        Product exProduct = dao.getExclusiveProduct();
+//        List<Feedback> listFB = dao.getFeedback();
+        List<Product> proByCate = dao.getProductByCategory("1");
+
+//        for (Category o : listC) {
+//            System.out.println(o);
+//        }
+//        for (Product o : listP) {
+//            System.out.println(o);
+//        }
+//        for (Product o : featuredProduct) {
+//            System.out.println(o);
+//        }
+//        for (Product o : lastProduct) {
+//            System.out.println(o);
+//        }
+//        System.out.println(exProduct);
+//        for (Feedback o : listFB) {
+//            System.out.println(o);
+//        }
+        for (Product o : proByCate) {
             System.out.println(o);
         }
     }

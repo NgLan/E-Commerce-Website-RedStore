@@ -15,17 +15,19 @@ public class Product {
     private double price;
     private String description;
     private int cateID;
+    private float rate;
 
     public Product() {
     }
 
-    public Product(int id, String name, String image, double price, String description, int cateID) {
+    public Product(int id, String name, String image, double price, String description, int cateID, float rate) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.price = price;
         this.description = description;
         this.cateID = cateID;
+        this.rate = rate;
     }
 
     public int getId() {
@@ -76,8 +78,16 @@ public class Product {
         this.cateID = cateID;
     }
 
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
+    }
+
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", image=" + image + ", price=" + price + ", description=" + description + ", cateID=" + cateID + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", image=" + image + ", price=" + price + ", description=" + description + ", cateID=" + cateID + ", rate=" + rate + '}';
     }
 }

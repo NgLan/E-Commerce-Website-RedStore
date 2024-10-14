@@ -1,6 +1,8 @@
 package control;
 
 import dao.DAO;
+import entity.Category;
+import entity.Feedback;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,14 +30,18 @@ public class HomeControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //B1: get data from dao
         DAO dao = new DAO();
-        List<Product> list = dao.getAllProduct();
-//        List<Category> listC = dao.getAllCategory();
-//        Product last = dao.getLast();
+        List<Category> listC = dao.getCategoryImage();
+        List<Product> featuredProduct = dao.getFeaturedProduct();
+        List<Product> lastProduct = dao.getLastProduct();
+        Product exProduct = dao.getExclusiveProduct();
+        List<Feedback> listFB = dao.getFeedback();
 
         //B2: set data to jsp
-        request.setAttribute("listP", list);
-//        request.setAttribute("listC", listC);
-//        request.setAttribute("lastProduct", last);
+        request.setAttribute("listC", listC);
+        request.setAttribute("listFP", featuredProduct);
+        request.setAttribute("lastP", lastProduct);;
+        request.setAttribute("exP", exProduct);
+        request.setAttribute("listFB", listFB);
         request.getRequestDispatcher("Home.jsp").forward(request, response);
     
         //404 -> Loi url

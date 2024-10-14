@@ -21,19 +21,19 @@ INSERT INTO [Product] (Name, Image, Price, Description, CategoryID, Rate) VALUES
 INSERT INTO Role (Name) VALUES (N'Customer');
 INSERT INTO Role (Name) VALUES (N'Admin');
 
-INSERT INTO Account ([User], Password, RoleID, Image) VALUES ('user1', 'password1', 1, N'user-1.png');
-INSERT INTO Account ([User], Password, RoleID, Image) VALUES ('user2', 'password2', 1, N'user-2.png');
-INSERT INTO Account ([User], Password, RoleID, Image) VALUES ('user3', 'password3', 1, N'user-3.png');
-INSERT INTO Account ([User], Password, RoleID, Image) VALUES ('user4', 'password4', 1, N'user-1.png');
-INSERT INTO Account ([User], Password, RoleID, Image) VALUES ('user5', 'password5', 1, N'user-1.png');
-INSERT INTO Account ([User], Password, RoleID, Image) VALUES ('user6', 'password6', 1, N'user-1.png');
-INSERT INTO Account ([User], Password, RoleID, Image) VALUES ('user7', 'password7', 1, N'user-1.png');
-INSERT INTO Account ([User], Password, RoleID, Image) VALUES ('user8', 'password8', 1, N'user-1.png');
-INSERT INTO Account ([User], Password, RoleID, Image) VALUES ('user9', 'password9', 1, N'user-1.png');
-INSERT INTO Account ([User], Password, RoleID, Image) VALUES ('user10', 'password10', 1, N'user-1.png');
-INSERT INTO Account ([User], Password, RoleID, Image) VALUES ('admin1', 'password11', 2, N'user-1.png');
-INSERT INTO Account ([User], Password, RoleID, Image) VALUES ('admin2', 'password12', 2, N'user-1.png');
-INSERT INTO Account ([User], Password, RoleID, Image) VALUES ('admin3', 'password13', 2, N'user-1.png');
+INSERT INTO Account ([User], Password, RoleID, FullName, Image) VALUES ('user1', 'password1', 1, N'user-1.png', N'Sean Parker');
+INSERT INTO Account ([User], Password, RoleID, FullName, Image) VALUES ('user2', 'password2', 1, N'user-2.png', N'Mike Smith');
+INSERT INTO Account ([User], Password, RoleID, FullName, Image) VALUES ('user3', 'password3', 1, N'user-3.png', N'Mabel Joe');
+INSERT INTO Account ([User], Password, RoleID, FullName, Image) VALUES ('user4', 'password4', 1, N'user-1.png', N'Sean Parker');
+INSERT INTO Account ([User], Password, RoleID, FullName, Image) VALUES ('user5', 'password5', 1, N'user-1.png', N'Sean Parker');
+INSERT INTO Account ([User], Password, RoleID, FullName, Image) VALUES ('user6', 'password6', 1, N'user-1.png', N'Sean Parker');
+INSERT INTO Account ([User], Password, RoleID, FullName, Image) VALUES ('user7', 'password7', 1, N'user-1.png', N'Sean Parker');
+INSERT INTO Account ([User], Password, RoleID, FullName, Image) VALUES ('user8', 'password8', 1, N'user-1.png', N'Sean Parker');
+INSERT INTO Account ([User], Password, RoleID, FullName, Image) VALUES ('user9', 'password9', 1, N'user-1.png', N'Sean Parker');
+INSERT INTO Account ([User], Password, RoleID, FullName, Image) VALUES ('user10', 'password10', 1, N'user-1.png', N'Sean Parker');
+INSERT INTO Account ([User], Password, RoleID, FullName, Image) VALUES ('admin1', 'password11', 2, N'user-1.png', N'Sean Parker');
+INSERT INTO Account ([User], Password, RoleID, FullName, Image) VALUES ('admin2', 'password12', 2, N'user-1.png', N'Sean Parker');
+INSERT INTO Account ([User], Password, RoleID, FullName, Image) VALUES ('admin3', 'password13', 2, N'user-1.png', N'Sean Parker');
 
 INSERT INTO Color (Name) VALUES (N'Đỏ');
 INSERT INTO Color (Name) VALUES (N'Đen');
