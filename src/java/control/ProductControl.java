@@ -41,9 +41,12 @@ public class ProductControl extends HttpServlet {
         List<Category> listC = dao.getAllCategory();
         List<Product> proByCate = dao.getProductByCategory(cateID);
         
-        request.setAttribute("listP", listP);
         request.setAttribute("listC", listC);
-        request.setAttribute("listP", proByCate);
+        if (cateID.equals("0")) {
+            request.setAttribute("listP", listP);
+        } else {
+            request.setAttribute("listP", proByCate);
+        }
         request.setAttribute("cateID", cateID);
         request.getRequestDispatcher("Product.jsp").forward(request, response);
     } 
