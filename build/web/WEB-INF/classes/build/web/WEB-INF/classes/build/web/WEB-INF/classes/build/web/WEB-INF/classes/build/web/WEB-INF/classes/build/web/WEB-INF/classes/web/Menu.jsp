@@ -11,10 +11,15 @@
             <li><a href="product">Products</a></li>
             <li><a href="home">About</a></li>
             <li><a href="home">Contact</a></li>
-            <li><a href="login">Account</a></li>
+            <c:if test="${sessionScope.acc == null}">
+                <li><a href="login">Login</a></li>
+            </c:if>
+            <c:if test="${sessionScope.acc != null}">
+                <li><a href="logout">Logout</a></li>
+            </c:if>
         </ul>
     </nav>
-    <a href="cart.html"><img src="assets/images/cart.png" alt="Cart" height="30px" width="30px" class="clickable"></a>
+    <a href="cart"><img src="assets/images/cart.png" alt="Cart" height="30px" width="30px" class="clickable"></a>
     <img src="assets/images/menu.png" alt="Menu" class="clickable menu-icon">
 </div>    
 <!-- End: Header -->

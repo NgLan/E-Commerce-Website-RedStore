@@ -14,7 +14,7 @@ a {
 }
 
 p {
-    color: #555 !important;
+    color: #555;
 }
 
 h4 {
@@ -250,6 +250,11 @@ form .btn:focus {
     height: 40px;
     margin: 20px 10px 0 0;
     font-size: 16px;
+}
+
+.text-danger {
+    color: red;
+    font-size: small;
 }
 
 /* Header */

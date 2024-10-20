@@ -38,13 +38,15 @@ public class RegisterControl extends HttpServlet {
         String repass = request.getParameter("repass");
         
         if (!pass.equals(repass)) {
-            response.sendRedirect("Login.jsp");
+            request.setAttribute("wrong_signup", "Re-enter pass is not equal to pass");
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
         } else {
             DAO dao = new DAO();
             Account acc = dao.checkAccountExist(user);
             
             if (acc != null) {
-                response.sendRedirect("Login.jsp");
+                request.setAttribute("wrong_signup", "Account is exist");
+                request.getRequestDispatcher("Login.jsp").forward(request, response);
             } else {
                 dao.signUp(user, pass);
                 response.sendRedirect("home");

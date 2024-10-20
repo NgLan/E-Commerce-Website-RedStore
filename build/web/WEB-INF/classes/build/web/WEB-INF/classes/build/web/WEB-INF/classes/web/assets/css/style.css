@@ -14,7 +14,7 @@ a {
 }
 
 p {
-    color: #555 !important;
+    color: #555;
 }
 
 h4 {
@@ -253,7 +253,7 @@ form .btn:focus {
 }
 
 .text-danger {
-    color: red !important;
+    color: red;
     font-size: small;
 }
 

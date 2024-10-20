@@ -25,7 +25,6 @@
                 </div>
                 <div class="col-2">
                     <div class="form-container">
-                        <p class="text-danger">${message}</p>
                         <div class="form-btn">
                             <span class="clickable" onclick="login()">Login</span>
                             <span class="clickable" onclick="register()">Register</span>
@@ -37,12 +36,13 @@
                             <input name="password" type="password" placeholder="Password">
                             <button type="submit" class="btn clickable">Login</button>
                             <a href="" class="a-decoration">Forgot password</a>
+                            <p class="text-danger">${message}</p>
                         </form>
 
-                        <form id="RegForm">
-                            <input type="text" placeholder="Username">
-                            <input type="email" placeholder="Email">
-                            <input type="password" placeholder="Password">
+                        <form action="register" id="RegForm">
+                            <input name="user" type="text" placeholder="Username">
+                            <input name="pass" type="password" placeholder="Password">
+                            <input name="repass" type="password" placeholder="Re-enter password">
                             <button type="submit" class="btn clickable">Register</button>
                         </form>
                     </div>

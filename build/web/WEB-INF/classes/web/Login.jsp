@@ -31,7 +31,7 @@
                             <hr id="Indicator">
                         </div>
 
-                        <form action="login" id="LoginForm">
+                        <form action="login" id="LoginForm" method="post">
                             <input name="user" type="text" placeholder="Username">
                             <input name="password" type="password" placeholder="Password">
                             <button type="submit" class="btn clickable">Login</button>
@@ -39,7 +39,7 @@
                             <p class="text-danger">${message}</p>
                         </form>
 
-                        <form action="register" id="RegForm">
+                        <form action="register" id="RegForm" method="post">
                             <input name="user" type="text" placeholder="Username">
                             <input name="pass" type="password" placeholder="Password">
                             <input name="repass" type="password" placeholder="Re-enter password">

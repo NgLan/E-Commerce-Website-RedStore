@@ -17,7 +17,47 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
-    <jsp:include page="Menu.jsp"></jsp:include>
+    <!-- Begin: Header -->
+    <div id="header">
+        <div class="navbar">
+            <div class="logo">
+                <a href="home"><img src="assets/images/logo.png" alt="Logo" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="home">Home</a></li>
+                    <li><a href="product">Products</a></li>
+                    <li><a href="home">About</a></li>
+                    <li><a href="home">Contact</a></li>
+                    <c:if test="${sessionScope.acc == null}">
+                        <li><a href="login">Login</a></li>
+                    </c:if>
+                    <c:if test="${sessionScope.acc != null}">
+                        <li><a href="logout">Logout</a></li>
+                    </c:if>
+                </ul>
+            </nav>
+            <c:if test="${sessionScope.acc == null}">
+                <a href="login"><img src="assets/images/cart.png" alt="Cart" height="30px" width="30px" class="clickable"></a>
+            </c:if>
+            <c:if test="${sessionScope.acc != null}">
+                <a href="cart"><img src="assets/images/cart.png" alt="Cart" height="30px" width="30px" class="clickable"></a>
+            </c:if>
+            <img src="assets/images/menu.png" alt="Menu" class="clickable menu-icon">
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <h1>Give Your Workout<br>A New Style!</h1>
+                <p>Success isn't always about greatness. It's about consistency. Consistent hard work gain success. Greatness wil come.</p>
+                <a href="" class="btn">Explore Now &#10132;</a>
+            </div>
+            <div class="col-2">
+                <img src="assets/images/image1.png" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- End: Header -->
+    
     <!-- Begin: Content -->
         <!-- Featured categories -->
     <div class="container">

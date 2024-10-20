@@ -6,6 +6,8 @@
 package control;
 
 import dao.DAO;
+import entity.Account;
+import entity.Cart;
 import entity.Color;
 import entity.Size;
 import java.io.IOException;
@@ -17,6 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,7 +27,7 @@ import java.util.List;
  */
 @WebServlet(name="CartControl", urlPatterns={"/cart"})
 public class CartControl extends HttpServlet {
-   
+    private static final Logger logger = Logger.getLogger(CartControl.class.getName());
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -35,16 +38,21 @@ public class CartControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(false);
+        Account acc = (Account) session.getAttribute("acc");
+        int userID = acc.getId();
         DAO dao = new DAO();
         
+        List<Cart> listP = dao.getUserCart(userID);
         List<Size> listS = dao.getAllSize();
         List<Color> listC = dao.getAllColor();
 
+        request.setAttribute("listP", listP);
         request.setAttribute("listS", listS);
         request.setAttribute("listC", listC);
         request.getRequestDispatcher("Cart.jsp").forward(request, response);
-    } 
-
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
      * Handles the HTTP <code>GET</code> method.
@@ -70,6 +78,7 @@ public class CartControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /** 

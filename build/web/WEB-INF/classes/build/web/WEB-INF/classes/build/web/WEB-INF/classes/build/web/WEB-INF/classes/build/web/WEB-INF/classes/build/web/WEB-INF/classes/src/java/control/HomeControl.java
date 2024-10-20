@@ -30,7 +30,7 @@ public class HomeControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //B1: get data from dao
         DAO dao = new DAO();
-        List<Category> listC = dao.getCategory();
+        List<Category> listC = dao.getAllCategory();
         List<Product> featuredProduct = dao.getFeaturedProduct();
         List<Product> lastProduct = dao.getLastProduct();
         Product exProduct = dao.getExclusiveProduct();

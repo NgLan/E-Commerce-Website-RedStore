@@ -26,7 +26,7 @@
             <nav>
                 <ul id="MenuItems">
                     <li><a href="home">Home</a></li>
-                    <li><a href="product">Products</a></li>
+                    <li><a href="product?sort=0">Products</a></li>
                     <li><a href="home">About</a></li>
                     <li><a href="home">Contact</a></li>
                     <c:if test="${sessionScope.acc == null}">

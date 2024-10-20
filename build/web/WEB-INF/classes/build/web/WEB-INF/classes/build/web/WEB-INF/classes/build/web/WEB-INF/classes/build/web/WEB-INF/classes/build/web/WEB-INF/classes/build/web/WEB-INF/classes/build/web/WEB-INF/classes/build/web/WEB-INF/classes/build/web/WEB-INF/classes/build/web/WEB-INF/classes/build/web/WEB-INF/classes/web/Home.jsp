@@ -22,7 +22,7 @@
         <!-- Featured categories -->
     <div class="container">
         <div class="row">
-            <c:forEach items="${listC}" var="o">
+            <c:forEach items="${listC}" end="2" var="o">
                 <div class="col-3"><img src="assets/images/category/${o.image}" alt=""></div>
             </c:forEach>
         </div>        
@@ -79,20 +79,24 @@
     <div class="offer">
         <div class="container">
             <div class="row">
-                <div class="col-2">
-                    <img src="assets/images/product/exclusive.png" alt="" class="offer-img">
-                </div>
-                <div class="col-2">
-                    <p>Exclusively Available on RedStore</p>
-                    <h1>Smart Band 4</h1>
-                    <small>
-                        The Mi Smart Band 4 features a 39.9% larger 
-                        (than Mi Band 3) AMOLED color full-touch display width
-                        adjustable brightness, so everything is clear as can 
-                        be.
-                    </small>
-                    <a href="" class="btn">Buy Now &#10132;</a>
-                </div>
+                <%--<c:set var="">--%>
+                    <div class="col-2">
+                        <img src="assets/images/product/exclusive.png" alt="" class="offer-img">
+                    </div>
+                    <div class="col-2">
+                        <p>Exclusively Available on RedStore</p>          
+                        <!--<h1>Smart Band 4</h1>-->
+                        <h1>${exP.name}</h1>
+<!--                        <small>
+                            The Mi Smart Band 4 features a 39.9% larger 
+                            (than Mi Band 3) AMOLED color full-touch display width
+                            adjustable brightness, so everything is clear as can 
+                            be.
+                        </small>-->
+                        <small>${exP.description}</small>
+                        <a href="" class="btn">Buy Now &#10132;</a>
+                    </div>
+                <%--</c:set>--%>
             </div>
         </div>
     </div>

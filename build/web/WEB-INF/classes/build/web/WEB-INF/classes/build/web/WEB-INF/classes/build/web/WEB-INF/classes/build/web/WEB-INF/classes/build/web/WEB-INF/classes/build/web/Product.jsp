@@ -25,10 +25,11 @@
         <div class="row row-2 mg-10">
             <h2>All Products</h2>
             <form action="product?sortby=${o.name}">
-                <select name="sort" id="">
+                <select name="sort" id="" onchange="this.form.submit()">
                     <option value="">All Product</option>
                     <c:forEach items="${listC}" var="o">
-                        <option value="${o.id}">${o.name}</option>
+                        <option value="${o.id}" ${cateID == o.id ? "selected":""}>${o.name}</option>
+                        
                     </c:forEach>
                 </select>
             </form>

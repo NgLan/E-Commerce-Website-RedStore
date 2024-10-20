@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,44 +17,13 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
-    <!-- Begin: Header -->
-    <div id="header">
-        <div class="navbar">
-            <div class="logo">
-                <a href="index.html"><img src="assets/images/logo.png" alt="Logo" width="125px"></a>
-            </div>
-            <nav>
-                <ul id="MenuItems">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Contact</a></li>
-                    <li><a href="account.html">Account</a></li>
-                </ul>
-            </nav>
-            <a href="cart.html"><img src="assets/images/cart.png" alt="Cart" height="30px" width="30px" class="clickable"></a>
-            <img src="assets/images/menu.png" alt="Menu" class="clickable menu-icon">
-        </div> 
-           
-        <div class="row">
-            <div class="col-2">
-                <h1>Give Your Workout<br>A New Style!</h1>
-                <p>Success isn't always about greatness. It's about consistency. Consistent hard work gain success. Greatness wil come.</p>
-                <a href="" class="btn">Explore Now &#10132;</a>
-            </div>
-            <div class="col-2">
-                <img src="assets/images/image1.png" alt="">
-            </div>
-        </div>
-    </div>
-    <!-- End: Header -->
-
+    <jsp:include page="Menu.jsp"></jsp:include>
     <!-- Begin: Content -->
         <!-- Featured categories -->
     <div class="container">
         <div class="row">
-            <c:forEach items="${listC}" var="o">
-                <div class="col-3"><img src="assets/images/category/${o.link}" alt=""></div>
+            <c:forEach items="${listC}" end="2" var="o">
+                <div class="col-3"><img src="assets/images/category/${o.image}" alt=""></div>
             </c:forEach>
         </div>        
     </div>
@@ -62,160 +32,46 @@
     <div class="container">
         <h2 class="title">Featured Products</h2>
         <div class="row">
-            <div class="col-4 clickable">
-                <a href="product-details.html">
-                    <img src="assets/images/product-1.jpg" alt="">
-                </a>
-                <a href="product-details.html">
-                    <h4>Red Printed T-Shirt</h4>
-                </a>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+            <c:forEach items="${listFP}" var="o">
+                <div class="col-4 clickable">
+                    <a href="product-details.html">
+                        <img src="assets/images/product/${o.image}" alt="">
+                    </a>
+                    <a href="product-details.html">
+                        <h4>${o.name}</h4>
+                    </a>
+                    <div class="rating main-color">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                        <p>
+                            <fmt:formatNumber value="${o.price}" pattern="###,###"></fmt:formatNumber><sup>đ</sup>
+                        </p>
                 </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4 clickable">
-                <img src="assets/images/product-2.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4 clickable">
-                <img src="assets/images/product-3.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4 clickable">
-                <img src="assets/images/product-4.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
+            </c:forEach>
         </div>
 
         <h2 class="title">Latest Products</h2>
         <div class="row">
-            <div class="col-4 clickable">
-                <img src="assets/images/product-5.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+            <c:forEach items="${lastP}" var="o">
+                <div class="col-4 clickable">
+                    <img src="assets/images/product/${o.image}" alt="">
+                    <h4>${o.name}</h4>
+                    <div class="rating main-color">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>
+                        <fmt:formatNumber value="${o.price}" pattern="###,###"></fmt:formatNumber><sup>đ</sup>
+                    </p>
                 </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4 clickable">
-                <img src="assets/images/product-6.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4 clickable">
-                <img src="assets/images/product-7.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4 clickable">
-                <img src="assets/images/product-8.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4 clickable">
-                <img src="assets/images/product-9.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4 clickable">
-                <img src="assets/images/product-10.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4 clickable">
-                <img src="assets/images/product-11.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4 clickable">
-                <img src="assets/images/product-12.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
+            </c:forEach>
         </div>
     </div>
 
@@ -223,20 +79,24 @@
     <div class="offer">
         <div class="container">
             <div class="row">
-                <div class="col-2">
-                    <img src="assets/images/exclusive.png" alt="" class="offer-img">
-                </div>
-                <div class="col-2">
-                    <p>Exclusively Available on RedStore</p>
-                    <h1>Smart Band 4</h1>
-                    <small>
-                        The Mi Smart Band 4 features a 39.9% larger 
-                        (than Mi Band 3) AMOLED color full-touch display width
-                        adjustable brightness, so everything is clear as can 
-                        be.
-                    </small>
-                    <a href="" class="btn">Buy Now &#10132;</a>
-                </div>
+                <%--<c:set var="">--%>
+                    <div class="col-2">
+                        <img src="assets/images/product/exclusive.png" alt="" class="offer-img">
+                    </div>
+                    <div class="col-2">
+                        <p>Exclusively Available on RedStore</p>          
+                        <!--<h1>Smart Band 4</h1>-->
+                        <h1>${exP.name}</h1>
+<!--                        <small>
+                            The Mi Smart Band 4 features a 39.9% larger 
+                            (than Mi Band 3) AMOLED color full-touch display width
+                            adjustable brightness, so everything is clear as can 
+                            be.
+                        </small>-->
+                        <small>${exP.description}</small>
+                        <a href="" class="btn">Buy Now &#10132;</a>
+                    </div>
+                <%--</c:set>--%>
             </div>
         </div>
     </div>

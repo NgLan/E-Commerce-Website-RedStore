@@ -77,39 +77,42 @@ public class DAO {
         return list;
     }
     
-//    public Product getExclusiveProduct() {
-//        String query = "SELECT * FROM [Product]\n" +
-//            "WHERE [Image] = 'exclusive.png'";
-//        try {
-//            conn = new DBContext().getConnection(); //mo ket noi voi sql
-//            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
-//            rs = ps.executeQuery();
-//            while (rs.next()) {
-//                return new Product(rs.getInt(1),
-//                        rs.getString(2),
-//                        rs.getString(3),
-//                        rs.getDouble(4),
-//                        rs.getString(5),
-//                        rs.getInt(6),
-//                        rs.getFloat(7));
-//            }
-//        } catch (Exception e) {
-//        }
-//        return null;
-//    }
+    public Product getExclusiveProduct() {
+        String query = "SELECT * FROM [Product]\n" +
+            "WHERE [Image] = 'exclusive.png'";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Product(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getFloat(7));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
     
     public static void main(String[] args) {
         DAO dao = new DAO();
-        List<Category> listC = dao.getCategoryImage();
-//        List<Product> topProduct = dao.getFeaturedProduct();
+//        List<Category> listC = dao.getCategoryImage();
+//        List<Product> featuredProduct = dao.getFeaturedProduct();
 //        List<Product> lastProduct = dao.getLastProduct();
-//        Product exProduct = dao.getExclusiveProduct();
-        for (Category o : listC) {
-            System.out.println(o);
-        }
+        Product exProduct = dao.getExclusiveProduct();
+//        for (Category o : listC) {
+//            System.out.println(o);
+//        }
+//        for (Product o : featuredProduct) {
+//            System.out.println(o);
+//        }
 //        for (Product o : lastProduct) {
 //            System.out.println(o);
 //        }
-//        System.out.println(exProduct);
+        System.out.println(exProduct);
     }
 }

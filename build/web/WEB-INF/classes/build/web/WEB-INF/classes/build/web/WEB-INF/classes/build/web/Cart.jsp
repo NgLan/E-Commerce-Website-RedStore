@@ -1,3 +1,6 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,24 +17,7 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
-    <!-- Begin: Header -->
-    <div class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="assets/images/logo.png" alt="Logo" width="125px"></a>
-        </div>
-        <nav>
-            <ul id="MenuItems">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Contact</a></li>
-                <li><a href="account.html">Account</a></li>
-            </ul>
-        </nav>
-        <a href="cart.html"><img src="assets/images/cart.png" alt="Cart" height="30px" width="30px" class="clickable"></a>
-        <img src="assets/images/menu.png" alt="Menu" class="clickable menu-icon">
-    </div>    
-    <!-- End: Header -->
+    <jsp:include page="Menu.jsp"></jsp:include>
 
     <!-- Cart items details -->
     <div class="container cart-page">
@@ -39,50 +25,47 @@
             <tr>
                 <th>Product</th>
                 <th>Quantity</th>
+                <th>Size</th>
+                <th>Color</th>
                 <th>Subtotal</th>
             </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="assets/images/buy-1.jpg" alt="">
-                        <div>
-                            <p>Red Printed Tshirt</p>
-                            <small>Price: $50.00</small>
-                            <a href="">Remove</a>
+            <c:forEach items="${listP}" var="p">
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="assets/images/product/${p.image}" alt="">
+                            <div>
+                                <p>${p.name}</p>
+                                <small>Price: 
+                                    <fmt:formatNumber type="number" pattern="###,###" value="${p.price}"></fmt:formatNumber><sup>đ</sup>
+                                </small>
+                                <a href="">Remove</a>
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1" min="1"></td>
-                <td>$50.00</td>
-            </tr>
-            <tr></tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="assets/images/buy-2.jpg" alt="">
-                        <div>
-                            <p>Red Printed Tshirt</p>
-                            <small>Price: $75.00</small>
-                            <a href="">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1" min="1"></td>
-                <td>$75.00</td>
-            </tr>
-            <tr></tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="assets/images/buy-3.jpg" alt="">
-                        <div>
-                            <p>Red Printed Tshirt</p>
-                            <small>Price: $75.00</small>
-                            <a href="">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1" min="1"></td>
-                <td>$75.00</td>
-            </tr>
+                    </td>
+                    <td><input type="number" value="${p.quantity}" min="1"></td>
+                    <td>
+                        <select name="size">
+                            <option value="${p.sizeID}" selected>${p.size}</option>
+                            <c:forEach items="${listS}" var="o">
+                                <option value="${o.id}" >${o.name}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="color">
+                            <option value="${p.colorID}" selected>${p.color}</option>
+                            <c:forEach items="${listC}" var="o">
+                                <option value="${o.id}">${o.name}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td>
+                        <c:set var="subTotal" value="${p.price*p.quantity}"></c:set>
+                        <fmt:formatNumber type="number" pattern="###,###" value="${subTotal}"></fmt:formatNumber><sup>đ</sup>
+                    </td>
+                </tr>
+            </c:forEach>
         </table>
 
         <div class="line"></div>
@@ -105,53 +88,14 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-1">
-                    <h3>Download Our App</h3>
-                    <p>Download App for Android and IOS mobile phone.</p>
-                    <div class="app-logo">
-                        <img src="assets/images/play-store.png" alt="">
-                        <img src="assets/images/app-store.png" alt="">
-                    </div>
-                </div>
-                <div class="footer-col-2">
-                    <img src="assets/images/logo-white.png" alt="">
-                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
-                </div>
-                <div class="footer-col-3">
-                    <h3>Useful Links</h3>
-                    <ul>
-                        <li>Coupons</li>
-                        <li>Blog Post</li>
-                        <li>Return Policy</li>
-                        <li>Join Affiliate</li>
-                    </ul>
-                </div>
-                <div class="footer-col-4">
-                    <h3>Follow us</h3>
-                    <ul>
-                        <li>Facebook</li>
-                        <li>Twitter</li>
-                        <li>Instagram</li>
-                        <li>Youtube</li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <p class="copyright">Copyright 2020 - Easy Tutorials</p>
-        </div>
-    </div>
-
+    <jsp:include page="Footer.jsp"></jsp:include>
     <!-- JavaScript -->
         <!-- Toggle Menu -->
     <script>
         var MenuItems = document.getElementById("MenuItems");
         var MenuIcon = document.querySelector(".menu-icon");
 
-        // Đóng/mở menu
+        // ÄÃ³ng/má» menu
         MenuIcon.onclick = function menutoggle() {
             if (MenuItems.style.display == '') {
                 MenuItems.style.display = 'block';

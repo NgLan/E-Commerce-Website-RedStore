@@ -14,25 +14,8 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
-    <!-- Begin: Header -->
-    <div class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="assets/images/logo.png" alt="Logo" width="125px"></a>
-        </div>
-        <nav>
-            <ul id="MenuItems">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Contact</a></li>
-                <li><a href="account.html">Account</a></li>
-            </ul>
-        </nav>
-        <a href="cart.html"><img src="assets/images/cart.png" alt="Cart" height="30px" width="30px" class="clickable"></a>
-        <img src="assets/images/menu.png" alt="Menu" class="clickable menu-icon">
-    </div>    
-    <!-- End: Header -->
-
+    <jsp:include page="Menu.jsp"></jsp:include>
+    
     <!-- Account Page -->
     <div class="account-page">
         <div class="container">
@@ -48,17 +31,18 @@
                             <hr id="Indicator">
                         </div>
 
-                        <form id="LoginForm">
-                            <input type="text" placeholder="Username">
-                            <input type="password" placeholder="Password">
+                        <form action="login" id="LoginForm">
+                            <input name="user" type="text" placeholder="Username">
+                            <input name="password" type="password" placeholder="Password">
                             <button type="submit" class="btn clickable">Login</button>
                             <a href="" class="a-decoration">Forgot password</a>
+                            <p class="text-danger">${message}</p>
                         </form>
 
-                        <form id="RegForm">
-                            <input type="text" placeholder="Username">
-                            <input type="email" placeholder="Email">
-                            <input type="password" placeholder="Password">
+                        <form action="register" id="RegForm">
+                            <input name="user" type="text" placeholder="Username">
+                            <input name="pass" type="password" placeholder="Password">
+                            <input name="repass" type="password" placeholder="Re-enter password">
                             <button type="submit" class="btn clickable">Register</button>
                         </form>
                     </div>
@@ -67,45 +51,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-1">
-                    <h3>Download Our App</h3>
-                    <p>Download App for Android and IOS mobile phone.</p>
-                    <div class="app-logo">
-                        <img src="assets/images/play-store.png" alt="">
-                        <img src="assets/images/app-store.png" alt="">
-                    </div>
-                </div>
-                <div class="footer-col-2">
-                    <img src="assets/images/logo-white.png" alt="">
-                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
-                </div>
-                <div class="footer-col-3">
-                    <h3>Useful Links</h3>
-                    <ul>
-                        <li>Coupons</li>
-                        <li>Blog Post</li>
-                        <li>Return Policy</li>
-                        <li>Join Affiliate</li>
-                    </ul>
-                </div>
-                <div class="footer-col-4">
-                    <h3>Follow us</h3>
-                    <ul>
-                        <li>Facebook</li>
-                        <li>Twitter</li>
-                        <li>Instagram</li>
-                        <li>Youtube</li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <p class="copyright">Copyright 2020 - Easy Tutorials</p>
-        </div>
-    </div>
+    <jsp:include page="Footer.jsp"></jsp:include>
 
     <!-- JavaScript -->
         <!-- Toggle Menu -->

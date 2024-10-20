@@ -52,9 +52,9 @@
         <!-- Featured categories -->
     <div class="container">
         <div class="row">
-            <div class="col-3"><img src="assets/images/category-1.jpg" alt=""></div>
-            <div class="col-3"><img src="assets/images/category-2.jpg" alt=""></div>
-            <div class="col-3"><img src="assets/images/category-3.jpg" alt=""></div>
+            <c:forEach items="${listC}" var="o">
+                <div class="col-3"><img src="assets/images/category/${o.link}" alt=""></div>
+            </c:forEach>
         </div>        
     </div>
 

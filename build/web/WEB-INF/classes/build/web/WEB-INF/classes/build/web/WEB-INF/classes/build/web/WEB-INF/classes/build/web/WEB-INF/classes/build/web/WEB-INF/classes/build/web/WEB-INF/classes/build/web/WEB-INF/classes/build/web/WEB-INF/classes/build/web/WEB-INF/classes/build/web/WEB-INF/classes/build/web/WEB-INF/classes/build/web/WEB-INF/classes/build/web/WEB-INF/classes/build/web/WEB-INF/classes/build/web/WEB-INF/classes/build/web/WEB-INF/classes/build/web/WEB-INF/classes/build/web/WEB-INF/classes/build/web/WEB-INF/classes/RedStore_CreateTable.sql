@@ -73,9 +73,9 @@ CREATE TABLE Cart (
 
 CREATE TABLE [Image] (
 	ID INT IDENTITY(1, 1) PRIMARY KEY,
-	ProductID INT,
+	[Option] CHAR(7) NOT NULL,
 	Link NVARCHAR(MAX) NOT NULL,
-	CONSTRAINT FK_ProductImage FOREIGN KEY (ProductID) REFERENCES [Product](ID)
+	--CONSTRAINT FK_ProductImage FOREIGN KEY ([Option]) REFERENCES [Product](ID)
 );
 
 --DROP TABLE [Image];

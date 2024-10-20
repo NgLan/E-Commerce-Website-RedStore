@@ -252,6 +252,11 @@ form .btn:focus {
     font-size: 16px;
 }
 
+.text-danger {
+    color: red !important;
+    font-size: small;
+}
+
 /* Header */
 #header {
     background: radial-gradient(#fff, #ffd6d6);

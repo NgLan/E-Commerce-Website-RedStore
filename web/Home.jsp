@@ -26,11 +26,11 @@
             <nav>
                 <ul id="MenuItems">
                     <li><a href="home">Home</a></li>
-                    <li><a href="product">Products</a></li>
+                    <li><a href="product?sort=0">Products</a></li>
                     <li><a href="home">About</a></li>
                     <li><a href="home">Contact</a></li>
                     <c:if test="${sessionScope.acc == null}">
-                        <li><a href="login">Login</a></li>
+                        <li><a href="Login.jsp">Login</a></li>
                     </c:if>
                     <c:if test="${sessionScope.acc != null}">
                         <li><a href="logout">Logout</a></li>
@@ -49,7 +49,7 @@
             <div class="col-2">
                 <h1>Give Your Workout<br>A New Style!</h1>
                 <p>Success isn't always about greatness. It's about consistency. Consistent hard work gain success. Greatness wil come.</p>
-                <a href="" class="btn">Explore Now &#10132;</a>
+                <a href="product?sort=0" class="btn">Explore Now &#10132;</a>
             </div>
             <div class="col-2">
                 <img src="assets/images/image1.png" alt="">
@@ -74,10 +74,8 @@
         <div class="row">
             <c:forEach items="${listFP}" var="o">
                 <div class="col-4 clickable">
-                    <a href="product-details.html">
+                    <a href="product_detail?pid=${o.id}">
                         <img src="assets/images/product/${o.image}" alt="">
-                    </a>
-                    <a href="product-details.html">
                         <h4>${o.name}</h4>
                     </a>
                     <div class="rating main-color">
@@ -98,8 +96,10 @@
         <div class="row">
             <c:forEach items="${lastP}" var="o">
                 <div class="col-4 clickable">
-                    <img src="assets/images/product/${o.image}" alt="">
-                    <h4>${o.name}</h4>
+                    <a href="product_detail?pid=${o.id}">
+                        <img src="assets/images/product/${o.image}" alt="">
+                        <h4>${o.name}</h4>
+                    </a>
                     <div class="rating main-color">
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -126,7 +126,7 @@
                     <p>Exclusively Available on RedStore</p>          
                     <h1>${exP.name}</h1>
                     <small>${exP.description}</small>
-                    <a href="" class="btn">Buy Now &#10132;</a>
+                    <a href="#" class="btn">Buy Now &#10132;</a>
                 </div>
             </div>
         </div>

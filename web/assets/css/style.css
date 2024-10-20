@@ -13,8 +13,13 @@ a {
     text-decoration: none;
 }
 
+button {
+    border: none;
+    font-size: 17px;
+}
+
 p {
-    color: #555;
+    color: #555; 
 }
 
 h4 {
@@ -37,7 +42,7 @@ select, input {
 }
 
 input {
-    /* display: block; */
+    min-inline-size: 7ch !important;
 }
 
 select:focus {
@@ -93,7 +98,7 @@ form input {
     height: 46px;
     margin: 10px 0;
     padding: 0 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #000;
 }
 
 form .btn {
@@ -255,6 +260,10 @@ form .btn:focus {
 .text-danger {
     color: red;
     font-size: small;
+}
+
+.width-fit-content {
+    field-sizing: content;
 }
 
 /* Header */
@@ -529,7 +538,7 @@ nav ul a:hover {
     background: #fff;
     width: auto;
     max-width: 300px;
-    height: 400px;
+    height: 410px;
     position: relative;
     text-align: center;
     padding: 20px 0;

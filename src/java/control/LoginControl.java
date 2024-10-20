@@ -35,17 +35,16 @@ public class LoginControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String user = request.getParameter("user");
         String password = request.getParameter("password");
-        
+
         DAO dao = new DAO();
         Account acc = dao.login(user, password);
         
         if (acc == null) {
-            request.setAttribute("message", "Wrong username or password");
+            request.setAttribute("wrong_login", "Wrong username or password");
             request.getRequestDispatcher("Login.jsp").forward(request, response);
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("acc", acc);
-            session.setMaxInactiveInterval(1000);
             response.sendRedirect("home"); 
         }
     } 

@@ -32,12 +32,12 @@ public class HomeControl extends HttpServlet {
         List<Category> listC = dao.getCategoryImage();
         List<Product> featuredProduct = dao.getFeaturedProduct();
         List<Product> lastProduct = dao.getLastProduct();
-//        Product exProduct = dao.getExclusiveProduct();
+        Product exProduct = dao.getExclusiveProduct();
         //B2: set data to jsp
         request.setAttribute("listC", listC);
         request.setAttribute("listFP", featuredProduct);
         request.setAttribute("lastP", lastProduct);;
-//        request.setAttribute("exP", exProduct);
+        request.setAttribute("exP", exProduct);
         request.getRequestDispatcher("Home.jsp").forward(request, response);
     
         //404 -> Loi url

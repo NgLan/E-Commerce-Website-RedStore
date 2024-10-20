@@ -26,10 +26,10 @@
             <h2>All Products</h2>
             <form action="product?sort=${o.id}">
                 <select name="sort" id="" onchange="this.form.submit()">
-                    <option value="">All Product</option>
-                    <c:forEach items="${listC}" var="o">
-                        <option value="${o.id}">${o.name}</option>
-                    </c:forEach>
+                        <option value="0">All Product</option>
+                        <c:forEach items="${listC}" var="o">
+                            <option value="${o.id}" ${cateID == o.id ? "selected":""}>${o.name}</option>
+                        </c:forEach>
                 </select>
             </form>
         </div>

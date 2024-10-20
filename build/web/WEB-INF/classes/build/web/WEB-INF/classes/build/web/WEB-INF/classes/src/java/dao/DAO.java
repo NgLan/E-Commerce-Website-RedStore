@@ -2,9 +2,12 @@ package dao;
 
 import context.DBContext;
 import entity.Account;
+import entity.Cart;
 import entity.Category;
+import entity.Color;
 import entity.Feedback;
 import entity.Product;
+import entity.Size;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -147,7 +150,7 @@ public class DAO {
     public List<Product> getProductByCategory(String cateID) {
         List<Product> list = new ArrayList<>();
         String query = "SELECT * FROM [Product]\n" +
-            "WHERE CategoryID = ?";
+            "WHERE CategoryID = ? AND [Image] <> 'exclusive.png'";
         try {
             conn = new DBContext().getConnection(); //mo ket noi voi sql
             ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
@@ -207,6 +210,124 @@ public class DAO {
         return null;
     }
     
+    public Account register(String user, String password) {
+        String query = "SELECT * FROM Account\n" +
+            "WHERE ? NOT IN [User]";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            ps.setString(1, user);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Account(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getString(5),
+                        rs.getString(6));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    public Account checkAccountExist(String user) {
+        String query = "SELECT * FROM Account\n" +
+            "WHERE [User] = ?";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            ps.setString(1, user);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Account(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getString(5),
+                        rs.getString(6));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    public void signUp(String user, String pass) {
+        String query = "INSERT INTO Account\n" +
+            "VALUES (?, ?, 1, '', '')";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            ps.setString(1, user);
+            ps.setString(2, pass);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
+    public List<Size> getAllSize() {
+        List<Size> list = new ArrayList<>();
+        String query = "SELECT * FROM Size";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Size(rs.getInt(1),
+                        rs.getString(2)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    public List<Color> getAllColor() {
+        List<Color> list = new ArrayList<>();
+        String query = "SELECT * FROM Color";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Color(rs.getInt(1),
+                        rs.getString(2)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    public List<Cart> getUserCart(String userID) {
+        List<Cart> list = new ArrayList<>();
+        String query = "SELECT P.ID AS ProductID, P.[Image], P.[Name], C.Quantity, S.ID AS SizeID, S.[Name] AS Size, Color.ID AS ColorID, Color.[Name] AS Color, P.Price FROM [Product] P\n" +
+            "JOIN (SELECT * FROM Cart WHERE [UserID] = ?) C\n" +
+            "ON P.ID = C.ProductID\n" +
+            "JOIN (SELECT * FROM Size) S\n" +
+            "ON S.ID = C.SizeID\n" +
+            "JOIN (SELECT * FROM Color) Color\n" +
+            "ON Color.ID = C.ColorID";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            ps.setString(1, userID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Cart(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getInt(5),
+                        rs.getString(6),
+                        rs.getInt(7),
+                        rs.getString(8),
+                        rs.getDouble(9)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
     public static void main(String[] args) {
         DAO dao = new DAO();
 //        List<Category> listC = dao.getCategory();
@@ -217,8 +338,9 @@ public class DAO {
 //        List<Feedback> listFB = dao.getFeedback();
 //        List<Product> proByCate = dao.getProductByCategory("1");
 //        Category cateName = dao.getCategory("1");
-        Account acc = dao.login("user1", "password1");
-    
+//        Account acc = dao.login("user1", "password1");
+        List<Cart> listP = dao.getUserCart("1");
+        
 //        for (Category o : listC) {
 //            System.out.println(o);
 //        }
@@ -239,6 +361,9 @@ public class DAO {
 //            System.out.println(o);
 //        }
 //        System.out.println(cateName);
-        System.out.println(acc);
+//        System.out.println(acc);
+        for (Cart o : listP) {
+            System.out.println(o);
+        }
     }
 }

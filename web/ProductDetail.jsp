@@ -1,3 +1,6 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,65 +17,46 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
-    <!-- Begin: Header -->
-    <div class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="assets/images/logo.png" alt="Logo" width="125px"></a>
-        </div>
-        <nav>
-            <ul id="MenuItems">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Contact</a></li>
-                <li><a href="account.html">Account</a></li>
-            </ul>
-        </nav>
-        <a href="cart.html"><img src="assets/images/cart.png" alt="Cart" height="30px" width="30px" class="clickable"></a>
-        <img src="assets/images/menu.png" alt="Menu" class="clickable menu-icon">
-    </div>    
-    <!-- End: Header -->
+    <jsp:include page="Menu.jsp"></jsp:include>
 
     <!-- Single product details -->
     <div class="container single-product">
         <div class="row">
             <div class="col-2">
-                <img src="assets/images/gallery-1.jpg" id="ProductImg" width="100%" alt="">
+                <img src="assets/images/product/subImage/${listSImage[0]}" id="ProductImg" width="100%" alt="">
                 <div class="small-img-row">
-                    <div class="small-img-col clickable">
-                        <img src="assets/images/gallery-1.jpg" class="small-img" width="100%" alt="">
-                    </div>
-                    <div class="small-img-col clickable">
-                        <img src="assets/images/gallery-2.jpg" class="small-img" width="100%" alt="">
-                    </div>
-                    <div class="small-img-col clickable">
-                        <img src="assets/images/gallery-3.jpg" class="small-img" width="100%" alt="">
-                    </div>
-                    <div class="small-img-col clickable">
-                        <img src="assets/images/gallery-4.jpg" class="small-img" width="100%" alt="">
-                    </div>
+                    <c:forEach items="${listSImage}" var="o">
+                        <div class="small-img-col clickable">
+                            <img src="assets/images/product/subImage/${o}" class="small-img" width="100%" alt="">
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
             <div class="col-2">
-                <p>Home / T-Shirt</p>
-                <h1>Red Printd T-Shirt by HRX</h1>
-                <h4>$50.00</h4>
-                <select name="" id="" class="buy-option">
-                    <option value="">Select Size</option>
-                    <option value="">XXL</option>
-                    <option value="">XL</option>
-                    <option value="">Large</option>
-                    <option value="">Medium</option>
-                    <option value="">Small</option>
-                </select>
-                <input type="number" value="1" class="buy-option" min="1"><br>
-                <a href="" class="btn a-decoration-none">Add To Cart</a>
-                
+                <p><a href="home">Home</a> / T-Shirt</p>
+                <h1>${product.name}</h1>
+                <h4>
+                    <fmt:formatNumber type="number" pattern="###,###" value="${product.price}"></fmt:formatNumber><sup>đ</sup>
+                </h4>
+                <form action="add_to_cart" method="post" id="add2cart">
+                    <input type="hidden" name="pid" value="${product.id}">
+                    <select name="size" id="" class="width-fit-content buy-option" required>
+                        <option selected>Select Size</option>
+                        <c:forEach items="${listS}" var="o">
+                            <option value="${o.id}">${o.name}</option>
+                        </c:forEach>
+                    </select>
+                    <select name="color" id="" class="width-fit-content buy-option" required>
+                        <option selected>Select Color</option>
+                        <c:forEach items="${listColor}" var="o">
+                            <option value="${o.id}">${o.name}</option>
+                        </c:forEach>
+                    </select>
+                    <input name="quantity" type="number" class="width-fit-content buy-option" min="1" required>
+                </form>
+                <button type="submit" form="add2cart" class="btn a-decoration-none">Add To Cart</button>
                 <h3>Product Details <i class="fa-solid fa-indent indent"></i></h3>
-                <p>Give your summer wardrobe a style upgrade with the HRX
-                Men's Active T-shirt. Team it with a pair of shorts for your morning
-                workout or a denims for an evening out with the guys.
-                </p>
+                <p>${product.description}</p>
             </div>
         </div>
     </div>
@@ -86,97 +70,29 @@
         </div>
         <!-- Products -->
         <div class="row">
-            <div class="col-4 clickable">
-                <img src="assets/images/product-9.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+            <c:forEach items="${listP}" var="o">
+                <div class="col-4">
+                    <a href="product_detail?pid=${o.id}" class="clickable">
+                        <img src="assets/images/product/${o.image}" alt="">
+                        <h4>${o.name}</h4>
+                    </a>
+                    <div class="rating main-color">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>
+                        <fmt:formatNumber type="number" pattern="###,###" value="${o.price}"></fmt:formatNumber><sup>đ</sup>
+                    </p>
                 </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4 clickable">
-                <img src="assets/images/product-10.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4 clickable">
-                <img src="assets/images/product-11.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4 clickable">
-                <img src="assets/images/product-12.jpg" alt="">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating main-color">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
+            </c:forEach>
         </div>
     </div>
     <!-- End: Content -->
 
-    <!-- Footer -->
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-1">
-                    <h3>Download Our App</h3>
-                    <p>Download App for Android and IOS mobile phone.</p>
-                    <div class="app-logo">
-                        <img src="assets/images/play-store.png" alt="">
-                        <img src="assets/images/app-store.png" alt="">
-                    </div>
-                </div>
-                <div class="footer-col-2">
-                    <img src="assets/images/logo-white.png" alt="">
-                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
-                </div>
-                <div class="footer-col-3">
-                    <h3>Useful Links</h3>
-                    <ul>
-                        <li>Coupons</li>
-                        <li>Blog Post</li>
-                        <li>Return Policy</li>
-                        <li>Join Affiliate</li>
-                    </ul>
-                </div>
-                <div class="footer-col-4">
-                    <h3>Follow us</h3>
-                    <ul>
-                        <li>Facebook</li>
-                        <li>Twitter</li>
-                        <li>Instagram</li>
-                        <li>Youtube</li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <p class="copyright">Copyright 2020 - Easy Tutorials</p>
-        </div>
-    </div>
+    <jsp:include page="Footer.jsp"></jsp:include>
 
     <!-- JavaScript -->
         <!-- Toggle Menu -->
@@ -184,7 +100,7 @@
         var MenuItems = document.getElementById("MenuItems");
         var MenuIcon = document.querySelector(".menu-icon");
 
-        // Đóng/mở menu
+        // ÄÃ³ng/má» menu
         MenuIcon.onclick = function menutoggle() {
             if (MenuItems.style.display == '') {
                 MenuItems.style.display = 'block';

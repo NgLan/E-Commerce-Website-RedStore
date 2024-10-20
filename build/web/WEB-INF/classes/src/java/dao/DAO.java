@@ -2,6 +2,7 @@ package dao;
 
 import context.DBContext;
 import entity.Account;
+import entity.Cart;
 import entity.Category;
 import entity.Color;
 import entity.Feedback;
@@ -149,7 +150,7 @@ public class DAO {
     public List<Product> getProductByCategory(String cateID) {
         List<Product> list = new ArrayList<>();
         String query = "SELECT * FROM [Product]\n" +
-            "WHERE CategoryID = ?";
+            "WHERE CategoryID = ? AND [Image] <> 'exclusive.png'";
         try {
             conn = new DBContext().getConnection(); //mo ket noi voi sql
             ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
@@ -297,6 +298,54 @@ public class DAO {
         return list;
     }
     
+    public List<Cart> getUserCart(int userID) {
+        List<Cart> list = new ArrayList<>();
+        String query = "SELECT P.ID AS ProductID, P.[Image], P.[Name], C.Quantity, S.ID AS SizeID, S.[Name] AS Size, Color.ID AS ColorID, Color.[Name] AS Color, P.Price FROM [Product] P\n" +
+            "JOIN (SELECT * FROM Cart WHERE [UserID] = ?) C\n" +
+            "ON P.ID = C.ProductID\n" +
+            "JOIN (SELECT * FROM Size) S\n" +
+            "ON S.ID = C.SizeID\n" +
+            "JOIN (SELECT * FROM Color) Color\n" +
+            "ON Color.ID = C.ColorID";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            ps.setInt(1, userID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Cart(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getInt(5),
+                        rs.getString(6),
+                        rs.getInt(7),
+                        rs.getString(8),
+                        rs.getDouble(9)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    public void removeFromCart(int uid, int pid, int sid, int cid) {
+        String query = "DELETE FROM Cart\n" +
+            "WHERE [UserID] = ?\n" + 
+            "AND ProductID = ?\n" + 
+            "AND SizeID = ?\n" + 
+            "AND ColorID = ?";
+        try {
+            conn = new DBContext().getConnection(); //mo ket noi voi sql
+            ps = conn.prepareStatement(query); //Day cau lenh query qua SQL Server
+            ps.setInt(1, uid);
+            ps.setInt(2, pid);
+            ps.setInt(3, sid);
+            ps.setInt(4, cid);
+            rs = ps.executeQuery();
+        } catch (Exception e) {
+        }
+    }
+    
     public static void main(String[] args) {
         DAO dao = new DAO();
 //        List<Category> listC = dao.getCategory();
@@ -307,8 +356,9 @@ public class DAO {
 //        List<Feedback> listFB = dao.getFeedback();
 //        List<Product> proByCate = dao.getProductByCategory("1");
 //        Category cateName = dao.getCategory("1");
-        Account acc = dao.login("user1", "password1");
-    
+//        Account acc = dao.login("user1", "password1");
+        List<Cart> listP = dao.getUserCart(1);
+        
 //        for (Category o : listC) {
 //            System.out.println(o);
 //        }
@@ -329,6 +379,9 @@ public class DAO {
 //            System.out.println(o);
 //        }
 //        System.out.println(cateName);
-        System.out.println(acc);
+//        System.out.println(acc);
+        for (Cart o : listP) {
+            System.out.println(o);
+        }
     }
 }

@@ -14,3 +14,9 @@ ORDER BY ID DESC;
 --getExclusiveProduct
 SELECT * FROM [Product]
 WHERE [Image] = 'exclusive.png';
+
+--getFeedback
+SELECT fb.UserID, acc.FullName, acc.[Image], fb.Review, fb.Rate
+FROM Account AS acc
+RIGHT JOIN Feedback AS fb
+ON acc.ID = fb.UserID;

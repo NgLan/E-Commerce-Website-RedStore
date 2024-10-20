@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,19 +31,20 @@
                             <span class="clickable" onclick="register()">Register</span>
                             <hr id="Indicator">
                         </div>
-
-                        <form action="login" id="LoginForm">
-                            <input name="user" type="text" placeholder="Username">
-                            <input name="password" type="password" placeholder="Password">
+                        
+                        <form action="login" id="LoginForm" method="post">
+                            <p class="text-danger">${wrong_login}</p>
+                            <input name="user" type="text" placeholder="Username" required="">
+                            <input name="password" type="password" placeholder="Password" required="">
                             <button type="submit" class="btn clickable">Login</button>
-                            <a href="" class="a-decoration">Forgot password</a>
-                            <p class="text-danger">${message}</p>
+                            <a href="#" class="a-decoration">Forgot password</a>
                         </form>
-
-                        <form action="register" id="RegForm">
-                            <input name="user" type="text" placeholder="Username">
-                            <input name="pass" type="password" placeholder="Password">
-                            <input name="repass" type="password" placeholder="Re-enter password">
+                        
+                        <form action="register" id="RegForm" method="post">
+                            <p class="text-danger">${wrong_signup}</p>
+                            <input name="user" type="text" placeholder="Username" required="">
+                            <input name="pass" type="password" placeholder="Password" required="">
+                            <input name="repass" type="password" placeholder="Re-enter password" required="">
                             <button type="submit" class="btn clickable">Register</button>
                         </form>
                     </div>

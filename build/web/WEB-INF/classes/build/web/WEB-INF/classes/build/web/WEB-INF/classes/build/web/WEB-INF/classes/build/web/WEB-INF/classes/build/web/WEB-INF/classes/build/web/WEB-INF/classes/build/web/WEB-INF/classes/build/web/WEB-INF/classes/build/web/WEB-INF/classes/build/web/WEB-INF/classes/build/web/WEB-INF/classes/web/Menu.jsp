@@ -4,14 +4,14 @@
 <div id="header">
     <div class="navbar">
         <div class="logo">
-            <a href="index.html"><img src="assets/images/logo.png" alt="Logo" width="125px"></a>
+            <a href="home"><img src="assets/images/logo.png" alt="Logo" width="125px"></a>
         </div>
         <nav>
             <ul id="MenuItems">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Contact</a></li>
+                <li><a href="home">Home</a></li>
+                <li><a href="product">Products</a></li>
+                <li><a href="home">About</a></li>
+                <li><a href="home">Contact</a></li>
                 <li><a href="account.html">Account</a></li>
             </ul>
         </nav>

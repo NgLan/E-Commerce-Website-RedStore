@@ -1,11 +1,15 @@
 package control;
 
+import dao.DAO;
+import entity.Image;
+import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -23,18 +27,20 @@ public class HomeControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet HomeControl</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet HomeControl at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        //B1: get data from dao
+        DAO dao = new DAO();
+        List<Image> image = dao.getImage("C");
+//        List<Category> listC = dao.getAllCategory();
+//        Product last = dao.getLast();
+
+        //B2: set data to jsp
+        request.setAttribute("listC", image);
+//        request.setAttribute("listC", listC);
+//        request.setAttribute("lastProduct", last);
+        request.getRequestDispatcher("Home.jsp").forward(request, response);
+    
+        //404 -> Loi url
+        //500 -> Loi khong load duoc du lieu (tren jsp)
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

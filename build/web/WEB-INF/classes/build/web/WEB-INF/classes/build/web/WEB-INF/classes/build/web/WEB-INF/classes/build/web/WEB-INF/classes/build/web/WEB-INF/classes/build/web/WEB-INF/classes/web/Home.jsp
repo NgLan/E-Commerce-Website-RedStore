@@ -17,7 +17,47 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
-    <jsp:include page="Menu.jsp"></jsp:include>
+    <!-- Begin: Header -->
+    <div id="header">
+        <div class="navbar">
+            <div class="logo">
+                <a href="home"><img src="assets/images/logo.png" alt="Logo" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="home">Home</a></li>
+                    <li><a href="product">Products</a></li>
+                    <li><a href="home">About</a></li>
+                    <li><a href="home">Contact</a></li>
+                    <c:if test="${sessionScope.acc == null}">
+                        <li><a href="login">Login</a></li>
+                    </c:if>
+                    <c:if test="${sessionScope.acc != null}">
+                        <li><a href="logout">Logout</a></li>
+                    </c:if>
+                </ul>
+            </nav>
+            <c:if test="${sessionScope.acc == null}">
+                <a href="login"><img src="assets/images/cart.png" alt="Cart" height="30px" width="30px" class="clickable"></a>
+            </c:if>
+            <c:if test="${sessionScope.acc != null}">
+                <a href="cart"><img src="assets/images/cart.png" alt="Cart" height="30px" width="30px" class="clickable"></a>
+            </c:if>
+            <img src="assets/images/menu.png" alt="Menu" class="clickable menu-icon">
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <h1>Give Your Workout<br>A New Style!</h1>
+                <p>Success isn't always about greatness. It's about consistency. Consistent hard work gain success. Greatness wil come.</p>
+                <a href="" class="btn">Explore Now &#10132;</a>
+            </div>
+            <div class="col-2">
+                <img src="assets/images/image1.png" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- End: Header -->
+    
     <!-- Begin: Content -->
         <!-- Featured categories -->
     <div class="container">
@@ -79,24 +119,15 @@
     <div class="offer">
         <div class="container">
             <div class="row">
-                <%--<c:set var="">--%>
-                    <div class="col-2">
-                        <img src="assets/images/product/exclusive.png" alt="" class="offer-img">
-                    </div>
-                    <div class="col-2">
-                        <p>Exclusively Available on RedStore</p>          
-                        <!--<h1>Smart Band 4</h1>-->
-                        <h1>${exP.name}</h1>
-<!--                        <small>
-                            The Mi Smart Band 4 features a 39.9% larger 
-                            (than Mi Band 3) AMOLED color full-touch display width
-                            adjustable brightness, so everything is clear as can 
-                            be.
-                        </small>-->
-                        <small>${exP.description}</small>
-                        <a href="" class="btn">Buy Now &#10132;</a>
-                    </div>
-                <%--</c:set>--%>
+                <div class="col-2">
+                    <img src="assets/images/product/exclusive.png" alt="" class="offer-img">
+                </div>
+                <div class="col-2">
+                    <p>Exclusively Available on RedStore</p>          
+                    <h1>${exP.name}</h1>
+                    <small>${exP.description}</small>
+                    <a href="" class="btn">Buy Now &#10132;</a>
+                </div>
             </div>
         </div>
     </div>
@@ -105,54 +136,21 @@
     <div class="testimonial">
         <div class="container">
             <div class="row">
-                <div class="col-3 clickable">
-                    <i class="main-color quote fa-solid fa-quote-left"></i>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Pariatur minima, necessitatibus sequi tempora sunt cupiditate 
-                    nisi alias error aperiam harum delectus minus voluptates quia 
-                    commodi! Nostrum, sapiente! Aperiam, modi vero.</p>
-                    <div class="rating main-color">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
+                <c:forEach items="${listFB}" var="o">
+                    <div class="col-3 clickable">
+                        <i class="main-color quote fa-solid fa-quote-left"></i>
+                        <p>${o.review}</p>
+                        <div class="rating main-color">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <img src="assets/images/user/${o.image}" alt="">
+                        <h3>${o.name}</h3>
                     </div>
-                    <img src="assets/images/user-1.png" alt="">
-                    <h3>Sean Parker</h3>
-                </div>
-                <div class="col-3 clickable">
-                    <i class="main-color quote fa-solid fa-quote-left"></i>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Pariatur minima, necessitatibus sequi tempora sunt cupiditate 
-                    nisi alias error aperiam harum delectus minus voluptates quia 
-                    commodi! Nostrum, sapiente! Aperiam, modi vero.</p>
-                    <div class="rating main-color">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <img src="assets/images/user-2.png" alt="">
-                    <h3>Mike Smith</h3>
-                </div>
-                <div class="col-3 clickable">
-                    <i class="main-color quote fa-solid fa-quote-left"></i>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Pariatur minima, necessitatibus sequi tempora sunt cupiditate 
-                    nisi alias error aperiam harum delectus minus voluptates quia 
-                    commodi! Nostrum, sapiente! Aperiam, modi vero.</p>
-                    <div class="rating main-color">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <img src="assets/images/user-3.png" alt="">
-                    <h3>Mabel Joe</h3>
-                </div>
+                </c:forEach>
             </div>
         </div>
     </div>
@@ -162,64 +160,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-5 clickable">
-                    <img src="assets/images/logo-godrej.png" alt="">
+                    <img src="assets/images/logo/logo-godrej.png" alt="">
                 </div>
                 <div class="col-5 clickable">
-                    <img src="assets/images/logo-oppo.png" alt="">
+                    <img src="assets/images/logo/logo-oppo.png" alt="">
                 </div>
                 <div class="col-5 clickable">
-                    <img src="assets/images/logo-coca-cola.png" alt="">
+                    <img src="assets/images/logo/logo-coca-cola.png" alt="">
                 </div>
                 <div class="col-5 clickable">
-                    <img src="assets/images/logo-paypal.png" alt="">
+                    <img src="assets/images/logo/logo-paypal.png" alt="">
                 </div>
                 <div class="col-5 clickable">
-                    <img src="assets/images/logo-philips.png" alt="">
+                    <img src="assets/images/logo/logo-philips.png" alt="">
                 </div>
             </div>
         </div>
     </div>   
     <!-- End: Content -->
-
-    <!-- Footer -->
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-1">
-                    <h3>Download Our App</h3>
-                    <p>Download App for Android and IOS mobile phone.</p>
-                    <div class="app-logo">
-                        <img src="assets/images/play-store.png" alt="">
-                        <img src="assets/images/app-store.png" alt="">
-                    </div>
-                </div>
-                <div class="footer-col-2">
-                    <img src="assets/images/logo-white.png" alt="">
-                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
-                </div>
-                <div class="footer-col-3">
-                    <h3>Useful Links</h3>
-                    <ul>
-                        <li>Coupons</li>
-                        <li>Blog Post</li>
-                        <li>Return Policy</li>
-                        <li>Join Affiliate</li>
-                    </ul>
-                </div>
-                <div class="footer-col-4">
-                    <h3>Follow us</h3>
-                    <ul>
-                        <li>Facebook</li>
-                        <li>Twitter</li>
-                        <li>Instagram</li>
-                        <li>Youtube</li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <p class="copyright">Copyright 2020 - Easy Tutorials</p>
-        </div>
-    </div>
+    <!--Footer-->
+    <jsp:include page="Footer.jsp"></jsp:include>
 
     <!-- JavaScript -->
         <!-- Toggle Menu -->

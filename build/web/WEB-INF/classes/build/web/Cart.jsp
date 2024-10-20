@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,34 +29,46 @@
                 <th>Color</th>
                 <th>Subtotal</th>
             </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="assets/images/product/buy-1.jpg" alt="">
-                        <div>
-                            <p>Red Printed Tshirt</p>
-                            <small>Price: $50.00</small>
-                            <a href="">Remove</a>
+            <c:set var="allSubtotal" value="${0}"></c:set>
+            <c:forEach items="${listP}" var="p" varStatus="status">
+                <tr>
+                    <td>Index: ${status.index}</td>
+                    <td>
+                        <div class="cart-info">
+                            <img src="assets/images/product/${p.image}" alt="">
+                            <div>
+                                <p>${p.name}</p>
+                                <small>Price: 
+                                    <fmt:formatNumber type="number" pattern="###,###" value="${p.price}"></fmt:formatNumber><sup>đ</sup>
+                                </small>
+                                <a href="edit_cart?index="${status.index}">Remove</a>
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1" min="1"></td>
-                <td>
-                    <select name="size">
-                        <c:forEach items="${listS}" var="o">
-                            <option value="${o.id}">${o.name}</option>
-                        </c:forEach>
-                    </select>
-                </td>
-                <td>
-                    <select name="color">
-                        <c:forEach items="${listC}" var="o">
-                            <option value="${o.id}">${o.name}</option>
-                        </c:forEach>
-                    </select>
-                </td>
-                <td>$50.00</td>
-            </tr>
+                    </td>
+                    <td><input type="number" value="${p.quantity}" min="1"></td>
+                    <td>
+                        <select name="size">
+                            <option value="${p.sizeID}" selected>${p.size}</option>
+                            <c:forEach items="${listS}" var="o">
+                                <option value="${o.id}">${o.name}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="color">
+                            <option value="${p.colorID}" selected>${p.color}</option>
+                            <c:forEach items="${listC}" var="o">
+                                <option value="${o.id}">${o.name}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td>
+                        <c:set var="subtotal" value="${p.price*p.quantity}"></c:set>
+                        <c:set var="allSubtotal" value="${allSubtotal + subtotal}"></c:set>
+                        <fmt:formatNumber type="number" pattern="###,###" value="${subtotal}"></fmt:formatNumber><sup>đ</sup>
+                    </td>
+                </tr>
+            </c:forEach>
         </table>
 
         <div class="line"></div>
@@ -64,15 +77,22 @@
             <table>
                 <tr>
                     <td>Subtotal</td>
-                    <td>$200.00</td>
+                    <td>
+                        <fmt:formatNumber type="number" pattern="###,###" value="${allSubtotal}"></fmt:formatNumber><sup>đ</sup>
+                    </td>
                 </tr>
                 <tr>
                     <td>Tax</td>
-                    <td>$35.00</td>
+                    <td>
+                        <c:set var="tax" value="${allSubtotal*0.05}"></c:set>
+                        <fmt:formatNumber type="number" pattern="###,###.###" value="${tax}"></fmt:formatNumber><sup>đ</sup>
+                    </td>
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td>$235.00</td>
+                    <td>
+                        <fmt:formatNumber type="number" pattern="###,###" value="${allSubtotal + tax}"></fmt:formatNumber><sup>đ</sup>
+                    </td>
                 </tr>
             </table>
         </div>
