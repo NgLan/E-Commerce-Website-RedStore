@@ -38,7 +38,7 @@ public class CartControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("acc") == null) {
-            response.sendRedirect("login"); // Chuyển hướng đến trang đăng nhập nếu session hết hạn hoặc chưa đăng nhập
+            response.sendRedirect("Login.jsp"); // Chuyển hướng đến trang đăng nhập nếu session hết hạn hoặc chưa đăng nhập
             return;
         }
         Account acc = (Account) session.getAttribute("acc");

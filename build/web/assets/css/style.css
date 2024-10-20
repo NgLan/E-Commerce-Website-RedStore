@@ -39,10 +39,15 @@ ul {
 select, input {
     padding: 10px;
     border: 1px solid #000;
+    field-sizing: content;
 }
 
 input {
     min-inline-size: 7ch !important;
+}
+
+select {
+    min-width: 68px
 }
 
 select:focus {
@@ -55,11 +60,11 @@ table {
 }
 
 th {
-    text-align: left;
     padding: 10px;
     color: #fff;
     background: #ff523b;
     font-weight: normal;
+    text-align: center;
 }
 
 td {
@@ -68,7 +73,7 @@ td {
 
 td input {
     width: 40px;
-    height: 30px;
+    height: 38.4px;
     padding: 5px;
 }
 
@@ -84,10 +89,13 @@ td img {
     margin-right: 10px;
 }
 
+th:first-child, td:first-child {
+    text-align: left;
+}
+
 th:last-child, td:last-child {
     text-align: right;
 }
-
 
 form a {
     font-size: 14px !important;
@@ -501,6 +509,11 @@ nav ul a:hover {
 /* Cart items */
 .cart-page {
     margin: 80px auto;
+    overflow: auto;
+}
+
+.cart-page > table tr td:nth-child(2), td:nth-child(3), td:nth-child(4) {
+    text-align: center;
 }
 
 .cart-page > table tr:hover {
