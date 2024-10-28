@@ -65,7 +65,7 @@ public class AddToCartControl extends HttpServlet {
         HttpSession session = request.getSession(false);
         
         if (session == null || session.getAttribute("acc") == null) {
-            response.sendRedirect("login");
+            response.sendRedirect("Login.jsp");
             return;
         }
         

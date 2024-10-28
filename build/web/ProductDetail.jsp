@@ -23,11 +23,11 @@
     <div class="container single-product">
         <div class="row">
             <div class="col-2">
-                <img src="assets/images/product/subImage/${listSImage[0]}" id="ProductImg" width="100%" alt="">
+                <img src="assets/images/product/subImage/${listSImage[0]}" id="ProductImg" width="100%">
                 <div class="small-img-row">
                     <c:forEach items="${listSImage}" var="o">
                         <div class="small-img-col clickable">
-                            <img src="assets/images/product/subImage/${o}" class="small-img" width="100%" alt="">
+                            <img src="assets/images/product/subImage/${o}" class="small-img" width="100%">
                         </div>
                     </c:forEach>
                 </div>

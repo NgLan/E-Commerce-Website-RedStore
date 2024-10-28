@@ -87,6 +87,7 @@ td img {
     width: 80px;
     height: 80px;
     margin-right: 10px;
+    object-fit: cover;
 }
 
 th:first-child, td:first-child {
@@ -474,8 +475,11 @@ nav ul a:hover {
 
 .single-product .col-2 img {
     padding: 0;
-    height: 459.53px;
     object-fit: cover;
+}
+
+.single-product .col-2 > img {
+    height: auto;
 }
 
 .single-product p {
@@ -512,6 +516,7 @@ nav ul a:hover {
 
 .small-img {
     height: auto;
+    max-height: 110px;
 }
 
 /* Cart items */
